@@ -10,5 +10,7 @@ RUN npm run build
 
 #RUN PHASE
 FROM nginx
+#expose is needed for elasticbeanstalk or wont open the port
+EXPOSE 80
 #copy         from:    to:
 COPY --from=0 /app/build /usr/share/nginx/html
