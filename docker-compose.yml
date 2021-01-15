@@ -1,0 +1,26 @@
+version: '3'
+services:
+  web:
+    build:
+      #where the files and folders needs to read
+      context: .
+      #location of Dockerfile
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      #placeholder to avoid override node_modules folder
+      - /app/node_modules
+      #creating volume
+      - .:/app
+
+  #service for testing purposes    
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /app/node_modules
+      - .:/app
+    #overwritting startup command  
+    command: ["npm", "run", "test"]

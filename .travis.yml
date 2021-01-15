@@ -1,0 +1,18 @@
+language: generic
+
+#super user permissions
+sudo: required
+
+services:
+  #asking travis-ci setup a copy of docker
+  - docker
+
+#steps to be executed before we start run test
+before_install:
+  #building docker image for testing
+  - docker build -f -t cajina/docker-react Dockerfile.dev .
+
+#series of commands when tests needs to be executed
+script:
+  # -e CI=true tell travis to exit after execution
+  - docker run -e CI=true cajina/docker-react npm run test
