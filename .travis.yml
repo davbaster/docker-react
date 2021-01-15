@@ -11,7 +11,7 @@ services:
 #steps to be executed before we start run test
 before_install:
   #building docker image for testing
-  - docker build -f -t cajina/docker-react Dockerfile.dev .
+  - docker build -t cajina/docker-react -f Dockerfile.dev .
 
 #series of commands when tests needs to be executed
 script:
